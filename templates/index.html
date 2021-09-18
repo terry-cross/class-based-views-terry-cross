@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post App</title>
+  </head>
+  <body>
+    {% include "navbar.html" %}
+
+    <h1>Posts</h1>
+
+    {% for post in posts %}
+
+    <ul>
+      <li>{{ post.body }}</li>
+      <li><a href="/user/{{post.creator.id}}/">{{ post.creator }}</a></li>
+      <li><a href="/post/{{post.id}}/">{{ post.created_at }}</a></li>
+    </ul>
+
+    {% endfor %}
+  </body>
+</html>
