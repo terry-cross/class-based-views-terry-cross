@@ -20,11 +20,15 @@ from posts import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.index_view, name="homepage"),
-    path("post/<int:post_id>/", views.post_detail_view, name="post_detail"),
-    path("user/<int:user_id>/", views.user_detail_view, name="homepage"),
+    # path("", views.index_view, name="homepage"),
+    path("", views.IndexView.as_view(), name="homepage"),
+    # path("post/<int:post_id>/", views.post_detail_view, name="post_detail"),
+    path("post/<int:post_id>/", views.PostDetailView.as_view(), name="post_detail"),
+    # path("user/<int:user_id>/", views.user_detail_view, name="homepage"),
+    path("user/<int:user_id>/", views.UserDetailView.as_view(), name="homepage"),
     path("logout/", views.logout_view, name="logout"),
     path("login/", views.login_view, name="login"),
     path("signup/", views.signup_view, name="signup"),
-    path("post/create/", views.create_post_view, name="create"),
+    # path("post/create/", views.create_post_view, name="create"),
+    path("post/create/", views.CreatePostView.as_view(), name="create"),
 ]
