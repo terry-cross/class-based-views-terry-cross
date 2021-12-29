@@ -9,9 +9,16 @@
   <body>
     {% include "navbar.html" %}
     <h1>Post</h1>
+    <hr>
 
+<br/>
+    {% for post in header_image %}
+      <img src="{{ post.header_image.url }}" style="width: 100px;">
+    {% endfor %}
+<br/>
     <ul>
-      <li>{{ post.body }}</li>
+      <li>{{ post.body|safe }}</li>
+      <img src="{{ header_image.url }}" style="width: 100px;">
       <li><a href="/user/{{post.creator.id}}/">{{ post.creator }}</a></li>
       <li><a href="/post/{{post.id}}/">{{ post.created_at }}</a></li>
     </ul>

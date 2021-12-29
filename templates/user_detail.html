@@ -8,11 +8,34 @@
   </head>
   <body>
     {% include "navbar.html" %}
-    <!-- <h1>User Detail</h1> -->
+    <h1>User Detail</h1>
     <h2>{{ target_user.username }}</h2>
+    {% load static %}
+
+    {% load crispy_forms_tags %}
+
+    {% block content %}
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+      </form>
+    
+      {% if uploaded_file %}
+        <p>File uploaded at: <a href="{{ uploaded_file.url }}">{{ uploaded_file.url }}</a></p>
+      {% endif %}
+      <br/>
+
+      {% if post.header_image %}
+        <img src="{{ post.header_image.url }}">
+      {% endif %}
+    <br/><br/>
+      <p><a href="{% url 'homepage' %}">Return to home</a></p>
+    {% endblock %}
     {% for post in posts %}
     <ul>
-      <li>{{ post.body }}</li>
+      <li>{{ post.body|safe }}</li>
       <li><a href="/user/{{post.creator.id}}/">{{ post.creator }}</a></li>
       <li><a href="/post/{{post.id}}/">{{ post.created_at }}</a></li>
     </ul>

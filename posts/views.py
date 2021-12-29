@@ -86,7 +86,6 @@ class CreatePostView(LoginRequiredMixin, View):
                 post = Post.objects.create(body=data.get("body"), creator=request.user)
                 return redirect(reverse("post_detail", args=(post.id,)))
 
-        
 
 def signup_view(request):
     template_name = "generic_form.html"

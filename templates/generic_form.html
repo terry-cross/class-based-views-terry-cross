@@ -12,8 +12,16 @@
     <h1>{{header}}</h1>
     {% endif %}
 
-    <form action="" method="post">
-      {% csrf_token %} {{ form.as_p }}
+    {% load crispy_forms_tags %}
+
+    {% if post.header_image %}
+      <img src="{{ post.header_image.url }}" style="width: 100px;">
+    {% endif %}
+
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.media }}
+      {{ form.as_p }}
       <input type="submit" value="Submit" />
     </form>
   </body>
